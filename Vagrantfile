@@ -12,7 +12,12 @@ Vagrant.configure(2) do |config|
 
   # Every Vagrant development environment requires a box. You can search for
   # boxes at https://atlas.hashicorp.com/search.
-  config.vm.box = "base"
+  config.vm.box = "hashicorp/precise32"
+
+  #The "provision" line is new, and tells Vagrant to use the shell provisioner 
+  #to setup the machine, with the bootstrap.sh file. The file path is relative 
+  #to the location of the project root (where the Vagrantfile is).
+  config.vm.provision :shell, path: "bootstrap.sh"
 
   # Disable automatic box update checking. If you disable this, then
   # boxes will only be checked for updates when the user runs
@@ -26,7 +31,7 @@ Vagrant.configure(2) do |config|
 
   # Create a private network, which allows host-only access to the machine
   # using a specific IP.
-  # config.vm.network "private_network", ip: "192.168.33.10"
+  config.vm.network "private_network", ip: "1.1.1.1"
 
   # Create a public network, which generally matched to bridged network.
   # Bridged networks make the machine appear as another physical device on
